@@ -1,0 +1,110 @@
+using System.ComponentModel.Design;
+
+namespace Calculadora_3
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            string[] histop = new string[10];
+            int contadorhist = 0;
+
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("(-------------------------------------------------)");
+                Console.WriteLine(" Calculadora 2025 ");
+                Console.WriteLine("(-------------------------------------------------)");
+                Console.WriteLine(" Escolha ");
+                Console.WriteLine(" 1 - Soma ");
+                Console.WriteLine(" 2 - Subtração ");
+                Console.WriteLine(" 3 - Multiplicação ");
+                Console.WriteLine(" 4 - Divisão ");
+                Console.WriteLine(" 5 - Tabuada ");
+                Console.WriteLine(" 6 - Historico de operações ");
+                Console.WriteLine(" S - Para Sair ");
+                Console.WriteLine("(-------------------------------------------------)");
+                decimal resultado = 0.0m;
+                string operacao = Console.ReadLine();
+
+                if (operacao == "s")
+                {
+                    break;
+                }
+                else if (operacao == "5")
+                {
+                    Console.WriteLine("(-------------------------------------------------)");
+                    Console.WriteLine(" Tabuada ");
+                    Console.WriteLine("(-------------------------------------------------)");
+                    Console.Write("digite o número da tabuada desejada: ");
+
+                    int nt = Convert.ToInt32(Console.ReadLine());
+
+                    for (int contador = 1; contador <= 10; contador++)
+                    {
+                        string linhadatabuada = $"{nt} x {contador} = {nt * contador}";
+                        Console.WriteLine(linhadatabuada);
+                    }
+                    Console.ReadLine();
+                    continue;
+                }
+
+                else if (operacao == "6")
+                {
+                    Console.WriteLine("(-------------------------------------------------)");
+                    Console.WriteLine(" Historico de Operações ");
+                    Console.WriteLine("(-------------------------------------------------)");
+                    for (int contador = 0; contador < contadorhist; contador++)
+                    {
+                        Console.WriteLine(histop[contador]);
+                    }
+                    Console.ReadLine();
+                    continue;
+                }
+
+                Console.WriteLine(" Digite o primeuro número ");
+                decimal num1 = Convert.ToDecimal(Console.ReadLine());
+
+                Console.WriteLine(" Digite o segundo número");
+                decimal num2 = Convert.ToDecimal(Console.ReadLine());
+
+                if (operacao == "1")
+                {
+                    resultado = num1 + num2;
+                    histop[contadorhist] = $"{num1} + {num2} = {resultado}";
+                }
+                else if (operacao == "2")
+                {
+                    resultado = num1 - num2;
+                    histop[contadorhist] = $"{num1} - {num2} = {resultado}";
+                }
+                else if (operacao == "3")
+                {
+                    resultado = num1 * num2;
+                    histop[contadorhist] = $"{num1} * {num2} = {resultado}";
+                }
+                else if (operacao == "4")
+                {
+                    while (num2 == 0)
+                    {
+                        Console.Write(" > Digite o segundo numero novamente: ");
+                        num2 = Convert.ToDecimal(Console.ReadLine());
+                    }
+                    resultado = num1 / num2;
+                    histop[contadorhist] = $"{num1} / {num2} = {resultado}";
+                }
+                else
+                    continue;
+                contadorhist++;
+
+                Console.WriteLine("(-------------------------------------------------)");
+                Console.WriteLine(" O resultado da operação é " + resultado.ToString("F2"));
+                Console.WriteLine("(-------------------------------------------------)");
+                Console.WriteLine(" Precione enter para fazer outra operação");
+                Console.ReadLine();
+            }
+        }
+    }
+}
+
+
